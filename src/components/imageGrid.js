@@ -3,7 +3,7 @@ import React from "react";
 // import { projectStore } from "../firebase/config";
 
 
-const ImageGrid=()=>{
+const ImageGrid=({setselectedImg})=>{
     
     
     const {docs}=useFirestore("images");
@@ -11,17 +11,15 @@ const ImageGrid=()=>{
     
             
     return(
-        <div>
+        <div className="img-grid">
             {
-                docs.map(doc=>{
-                    return(
-                        <>
-                        <li key={doc.id}>
+                docs.map(doc=>
+                    (
+                        <div key={doc.id} className="img-wrap" onClick={()=>setselectedImg(doc.url)}>
                             <img src={doc.url} alt="" />
-                        </li>
-                        </>
+                        </div>
                     )
-                })
+                )
             }
         </div>
     )

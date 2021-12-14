@@ -1,7 +1,6 @@
 import useFirestore from "../hooks/useFirestore";
 import React from "react";
-// import { projectStore } from "../firebase/config";
-
+// import { anime } from "framer-motion"
 
 const ImageGrid=({setselectedImg})=>{
     

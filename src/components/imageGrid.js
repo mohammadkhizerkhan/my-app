@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { projectStore } from "../firebase/config";
+import useFirestore from "../hooks/useFirestore";
+import React from "react";
+// import { projectStore } from "../firebase/config";
 
-// import useFirestore from "../hooks/useFirestore";
 
 const ImageGrid=()=>{
-
-    const [docs, setdocs] = useState([]);
-
-    useEffect(() => {
-                projectStore.collection("images")
-                .orderBy("createsBy","desc")
-                .onSnapshot((snap)=>{
-                    const data=snap.docs.map((doc)=>({
-                        id:doc.id,
-                        ...doc.data()
-                    }));
-                    setdocs(data)
-                    console.log(data)
-                });
-            }, [])
-
+    
+    
+    const {docs}=useFirestore("images");
+    // console.log(docs)
+    
+            
     return(
         <div>
-            <p>{docs}</p>
+            {
+                docs.map(doc=>{
+                    return(
+                        <>
+                        <li key={doc.id}>
+                            <img src={doc.url} alt="" />
+                        </li>
+                        </>
+                    )
+                })
+            }
         </div>
     )
 }

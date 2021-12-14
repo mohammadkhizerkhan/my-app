@@ -21,8 +21,8 @@ function useStorage(file) {
        },async ()=>{
            const url=await storageRef.getDownloadURL();
            const createrAt=timestamp();
-           collectionRef.add({url,createrAt})
            seturl(url)
+           collectionRef.add({url,createrAt})
        }
        )
     }, [file])
